@@ -1,7 +1,9 @@
 <template>
   <div class="field is-grouped">
     <div class="control">
-      <button class="button is-dark">Novo</button>
+      <router-link to="/product/create">
+        <button class="button is-dark">Novo</button>
+      </router-link>
     </div>
     <div class="control has-icons-left has-icons-right">
       <input class="input" type="text" placeholder="Filtro" v-model="filter" />
@@ -13,13 +15,13 @@
 </template>
 
 <script lang="ts" setup>
-import { watch } from 'vue';
-import { ref, defineEmits } from 'vue';
+import { watch } from 'vue'
+import { ref, defineEmits } from 'vue'
 
-const filter = ref("");
-const emit = defineEmits(['filter-updated']);
+const filter = ref('')
+const emit = defineEmits(['filter-updated'])
 
 watch(filter, () => {
-  emit('filter-updated', filter.value);
-});
+  emit('filter-updated', filter.value)
+})
 </script>

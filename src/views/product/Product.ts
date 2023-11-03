@@ -1,8 +1,9 @@
 export default interface Product {
-    id: number;
-    code: number
-    name: string;
-    category: string;
-    price: number;
-    minimumStock: number;
+    id: number | null;
+    code: number | null;
+    name: string | null;
+    description: string | null;
+    category: string | null;
+    price: number | null;
+    minimumStock: number | null;
 }

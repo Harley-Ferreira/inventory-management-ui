@@ -9,11 +9,22 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-    
+
     {
       path: '/product',
       name: 'product',
-      component: () => import('@/views/product/ProductView.vue')
+      children: [
+        {
+          path: 'list',
+          name: 'list',
+          component: () => import('@/views/product/ProductView.vue'),
+        },
+        {
+          path: 'create',
+          name: 'create',
+          component: () => import('@/views/product/ProductForm.vue')
+        }
+      ]
     },
 
     {
