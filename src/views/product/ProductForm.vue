@@ -33,7 +33,7 @@
           </input-card>
 
           <div class="buttons">
-            <button @click="$router.back" class="button is-dark">Voltar</button>
+            <button @click="back" class="button is-dark">Voltar</button>
             <button type="submit" class="button is-primary">Salvar</button>
           </div>
         </form>
@@ -43,10 +43,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import InputCard from '@/components/InputCard.vue'
 import ProductService from '@/services/ProductService'
 import type Product from './Product'
+import router from '@/router'
 
 const product = ref<Product>({
   id: null,
@@ -58,8 +59,24 @@ const product = ref<Product>({
   minimumStock: null
 })
 
-const submitForm = () => {
-  ProductService.save(product.value)
+onMounted(async () => {
+  const id = router.currentRoute.value.params.id
+  if (id != null && id != undefined) {
+    product.value = await ProductService.getById(Number(id));
+  }
+})
+
+async function submitForm() {
+  if (product.value != null && product.value.id != null) {
+    await ProductService.update(product.value.id, product.value)
+  } else {
+    await ProductService.save(product.value)
+  }
+  back();
+}
+
+function back() {
+  router.push({name: 'product-list'})
 }
 </script>
 

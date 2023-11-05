@@ -16,12 +16,17 @@ const router = createRouter({
       children: [
         {
           path: 'list',
-          name: 'list',
-          component: () => import('@/views/product/ProductView.vue'),
+          name: 'product-list',
+          component: () => import('@/views/product/ProductView.vue')
         },
         {
           path: 'create',
-          name: 'create',
+          name: 'product-create',
+          component: () => import('@/views/product/ProductForm.vue')
+        },
+        {
+          path: 'edit/:id',
+          name: 'product-edit',
           component: () => import('@/views/product/ProductForm.vue')
         }
       ]
