@@ -13,10 +13,10 @@
           <td>
             <p class="buttons">
               <span class="icon is-small" style="margin-right: 0.5rem">
-                <i class="fas fa-edit" @click="update(row.code)"></i>
+                <i class="fas fa-edit" @click="update(row.id)"></i>
               </span>
               <span class="icon is-small">
-                <i class="fas fa-times" @click="romove(row.code)"></i>
+                <i class="fas fa-times" @click="romove(row.id)"></i>
               </span>
             </p>
           </td>
@@ -37,12 +37,12 @@ const emit = defineEmits<{
   romove: [id: number]
 }>()
 
-function update(code: number) {
-  emit('update', code)
+function update(id: number) {
+  emit('update', id)
 }
 
-function romove(code: number) {
-  emit('romove', code)
+function romove(id: number) {
+  emit('romove', id)
 }
 </script>
 
